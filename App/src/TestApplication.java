@@ -18,8 +18,7 @@ public class TestApplication {
 		}
 		catch(SQLException e)
 		{
-			System.out.println("Connection failed ");
-		}
+System.out.println("Connection Failed ");		}
 	}
 
 }
