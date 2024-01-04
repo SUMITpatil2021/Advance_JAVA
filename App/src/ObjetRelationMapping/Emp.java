@@ -1,5 +1,7 @@
 package ObjetRelationMapping;
 
+import java.util.Objects;
+
 public class Emp {
 
 
@@ -47,6 +49,25 @@ public class Emp {
 	public String toString() {
 		return " [empno=" + empno + ", ename=" + ename + ", sal=" + sal + "]";
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(empno, ename, sal);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Emp other = (Emp) obj;
+		return empno == other.empno && Objects.equals(ename, other.ename) && Objects.equals(sal, other.sal);
+	}
+	
+	
 	
 	
 	}
