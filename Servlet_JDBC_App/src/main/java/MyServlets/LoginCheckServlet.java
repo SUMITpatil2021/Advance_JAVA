@@ -7,6 +7,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -45,6 +46,7 @@ public class LoginCheckServlet extends HttpServlet {
 		String uid=request.getParameter("u_id");
 		String pwd=request.getParameter("password");
 		PrintWriter out=response.getWriter();
+		System.out.println("in servlet");
 		try
 		{
 		String query="select * from users where u_id=? and password=?";
@@ -66,10 +68,16 @@ public class LoginCheckServlet extends HttpServlet {
 		}
 		
 		if(flag)
-			response.getWriter().print("Login Success");
+		{
+			//response.getWriter().print("Login Success");
+			RequestDispatcher rd=request.getRequestDispatcher("/success");
+			rd.forward(request, response);
+		}
 		else
 		{
-			response.getWriter().print("Login Failed ");
+			//response.getWriter().print("Login Failed ");
+			RequestDispatcher rd=request.getRequestDispatcher("/failure");
+			rd.forward(request, response);
 		}
 		
 		}
