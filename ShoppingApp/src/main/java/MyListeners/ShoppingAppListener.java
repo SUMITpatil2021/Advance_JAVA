@@ -17,7 +17,7 @@ public class ShoppingAppListener implements ServletContextListener {
 		try
 		{
 		Class.forName("com.mysql.cj.jdbc.Driver");
-		String jdbcurl="jdbc:mysql://localhost:3306/Shoppingdb";
+		String jdbcurl="jdbc:mysql://localhost:3306/shoppingdb";
 		con=DriverManager.getConnection(jdbcurl,"root","sumit");
 		System.out.println("Connection Established ");
 		sce.getServletContext().setAttribute("jdbccon",con);

@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,6 +27,10 @@ public class GetProductsServlet extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		RequestDispatcher rd = request.getRequestDispatcher("/header");
+		rd.include(request, response);
+		
 		PreparedStatement ps=null;
 		ResultSet rs=null;
 		PrintWriter out=response.getWriter();
@@ -35,7 +40,7 @@ public class GetProductsServlet extends HttpServlet {
 			ps=con.prepareStatement("select *from product where cat_id=?");
 			ps.setInt(1, id);
 			rs=ps.executeQuery();
-			out.print("<form action=''>");
+			out.print("<form action='addtocart'>");
 			out.print("Select Product");
 			out.print("<select name='product'>");
 			while(rs.next())

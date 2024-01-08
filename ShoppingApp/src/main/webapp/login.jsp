@@ -7,6 +7,19 @@
 <title>Login Page</title>
 </head>
 <body>
+<%
+    Cookie [] all = request.getCookies();
+	if(all != null)
+	{
+		for(Cookie c : all)
+		{
+			if(c.getName().equals("loginerror"))
+			{
+				out.print(c.getValue());
+			}
+		}
+	}     
+    %>
 <form action="loginCheck" method="post">
 	Enter User Name 
 	<input type="text" name="u_id"/>
