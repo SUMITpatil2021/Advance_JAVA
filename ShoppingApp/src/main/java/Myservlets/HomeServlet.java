@@ -41,7 +41,7 @@ public class HomeServlet extends HttpServlet {
 			rs=stmt.executeQuery("select *from category");
 			while(rs.next())
 			{
-				out.print("<a href='getProducts?catid="+rs.getInt(1)+"'>");
+				out.print("<a href='getProducts.jsp?catid="+rs.getInt(1)+"'>");
 				out.print(rs.getString(2));
 				out.print("</a>");
 				out.print("<br/>");

@@ -35,7 +35,7 @@ public class AddToCartServlet extends HttpServlet {
 		PrintWriter out=response.getWriter();
 		out.print("Pid "+pid+" is Added  in the cart <br/>");
 		out.print("<br/><a href='home'> Go Back To Home </a>");
-		out.print("<br/> <a href='viewcart'>View Cart</a>");
+		out.print("<br/> <a href='viewcart.jsp'>View Cart</a>");
 	}
 
 	
