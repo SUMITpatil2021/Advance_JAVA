@@ -17,6 +17,12 @@ public class Topic {
 		this.name = name;
 		this.desc = desc;
 		this.uid = uid;
+	} 
+	
+	public Topic (String name)
+	{
+		super();
+		this.name=name;
 	}
 
 

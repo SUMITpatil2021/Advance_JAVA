@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import beans.Comments;
+import beans.SubComment;
 import beans.Topic;
 
 // view specific comments 
@@ -44,13 +45,13 @@ public class ViewAllCommentsController extends HttpServlet {
 		while(rs.next())
 		{
 			Topic topic=new Topic(rs.getString(2));
-			Comment comment=new Comment(rs.getString(1));
+			Comments comment=new Comments(rs.getString(1));
 			subcomment=new  SubComment(topic,comment);
 			comments.add(subcomment);
 		}
 		getServletContext().setAttribute("clist", cmnts);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/showComments.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/viewAllComments.jsp");
 		rd.include(request, response);
 		}
 		catch(Exception e)

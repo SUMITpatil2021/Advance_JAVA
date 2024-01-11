@@ -15,8 +15,10 @@ public class Comments {
 		this.topicid = topicid;
 		this.uid = uid;
 	}
-	public Comments(String string) {
-		// TODO Auto-generated constructor stub
+	public Comments(String text) {
+		super();
+		this.text=text;
+
 	}
 	public int getCid() {
 		return cid;
