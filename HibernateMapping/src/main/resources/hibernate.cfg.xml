@@ -22,7 +22,11 @@
         <property name="hibernate.current_session_context_class">org.hibernate.context.internal.ThreadLocalSessionContext</property>
  
         <!-- Mapping With Model Class Containing Annotations -->
-    <mapping class="entities.Student" />
+  <!--   <mapping class="entities.Student" /> --> 
+    <mapping class="entities.Order"/>
+    <mapping class="entities.OrderItem"/>
+    <mapping class="entities.Category"/>
+    <mapping class="entities.Product"/>
         
         
     </session-factory>
