@@ -1,0 +1,95 @@
+Unit Testing is defined as a type of software testing where individual components of a software are tested. Unit Testing of the software product is carried out during the development of an application. An individual component may be either an individual function or a procedure. Unit Testing is typically performed by the developer. In SDLC or V Model, Unit testing is the first level of testing done before integration testing. Unit testing is such a type of testing technique that is usually performed by developers. Although due to the reluctance of developers to test, quality assurance engineers also do unit testing. 
+
+
+Objective of Unit Testing: 
+The objective of Unit Testing is:
+
+To isolate a section of code.
+To verify the correctness of the code.
+To test every function and procedure.
+To fix bugs early in the development cycle and to save costs.
+To help the developers to understand the code base and enable them to make changes quickly.
+To help with code reuse.
+
+
+There are 2 types of Unit Testing: Manual, and Automated.
+
+Here are some commonly used Unit Testing tools: 
+
+Jtest 
+Junit 
+NUnit 
+EMMA
+PHPUnit 
+
+
+JUnit is a unit testing framework for Java programming
+JUnit promotes the idea of "first testing then coding", which emphasizes on setting up the test data for a piece of code that can be tested first and then implemented. This approach is like "test a little, code a little, test a little, code a little."
+
+Diff between manual and automation testing
+Executing a test cases manually without any tool support is known as manual testing ----- Taking tool support and executing the test cases by using an automation tool is known as automation testing.
+Time-consuming and tedious : Since test cases are executed by human resources, it is very slow and tedious. -----	Fast - Automation runs test cases significantly faster than human resources.
+Huge investment in human resources : As test cases need to be executed manually, more testers are required in manual testing. ----- Less investment in human resources - Test cases are executed using automation tools, so less number of testers are required in automation testing.
+Less reliable - Manual testing is less reliable, as it has to account for human errors.----- More reliable - Automation tests are precise and reliable.
+Non-programmable - No programming can be done to write sophisticated tests to fetch hidden information. -----	Programmable - Testers can program sophisticated tests to bring out hidden information.
+
+
+
+Features of JUnit
+Provides annotations to identify test methods.
+Provides assertions for testing expected results.
+Provides test runners for running tests.
+JUnit shows test progress in a bar that is green if the test is running smoothly, and it turns red when a test fails.
+A formal written unit test case is characterized by a known input and an expected output, which is worked out before the test is executed. The known input should test a precondition and the expected output should test a post-condition.
+There must be at least two unit test cases for each requirement - one positive test and one negative test. If a requirement has sub-requirements, each sub-requirement must have at least two test cases as positive and negative.
+
+
+Spring testing
+In a development environment, usually test codes are written separately and are not mixed with the normal code. In fact, testing a program is distinctly a separate project and is stored in a separate directory. 
+We can simply use the spring-boot-starter-test in pom.xml and transitively pull all the required dependencies in a Spring application. The support libraries for testing as pulled by the Maven file are as follows:
+JUnit: It is the standard Java unit testing framework which provides an up-to-date foundation for developer-side testing on the JVM.
+Spring Test: Utilities and Integration support for Spring Boot applications.
+AssertJ: A set of assertions to provide meaningful error messages that leverage readability and easy debugging.
+Hamcrest: Provides a library of matcher object that helps in creating flexible expressions.
+Mockito: Java Mocking framework.
+JSONassert: Helps in writing JSON unit test and testing REST interfaces.
+JsonPath: Xpath for Json.
+
+
+Assertions in testing
+An assertion is a statement in the Java programming language that enables you to test your assumptions about your program. For example, if you write a method that calculates the speed of a particle, you might assert that the calculated speed is less than the speed of light.
+
+
+
+SpringBootTest annotation and when to use it. As I said, you can use this annotation to load entire application context and also perform both unit test and integration test op your spring boot application. You can use this to test your Controller, Service, and Repository classes. 
+
+The @SpringBootTest annotation also provides several configuration options, including loading specific classes, setting the environment, and setting properties, making it a versatile tool that can be configured to suit a wide range of testing scenarios. 
+
+You can also use @WebMvcTest and @DataJpaTest to test the service layer and data layer but when it comes to testing the whole application you can use @SpringBootTest annotation.  The flexibility and power of the @SpringBootTest annotation make it an indispensable tool for Java developers working with Spring Boot.
+
+During unit testing with junit and mockito, generally, we use @Mock and @InjectMocks annotations to create mocks and SUT (System Under Test) to be tested.
+
+It is important to understand the difference between a mock and an object. An object is an actual instance of a class and any method invoked using object reference will execute the method body defined in the class file.
+
+A mock object is a proxy interface to hide an underlying dependency that cannot be tested in a test environment e.g. database, network locations etc. A method invoked using mocked reference does not execute the actual method body defined in the class file, rather the method behavior is configured using when(...).thenReturn(...) methods.
+
+In a junit test, we create objects for the class that need to be tested and its methods to be invoked.
+We create mocks for the dependencies which will not be present in the test environment and objects are dependent on it to complete the method call.
+
+In mockito-based junit tests, @Mock annotation creates mocks and @InjectMocks creates actual objects and injects mocked dependencies into it.
+
+Use @InjectMocks to create class instances that need to be tested in the test class. We call it ‘code under test‘ or ‘system under test‘.
+Use @InjectMocks when the actual method body needs to be executed for a given class.
+Use @InjectMocks when we need all or a few internal dependencies initialized with mock objects to work the method correctly.
+Use @Mock to create mocks that are needed to support the testing of SUT.
+We must define the when(...).thenReturn(...) methods for mock objects whose class methods will be invoked during actual test execution
+
+@Mock creates a mock. @InjectMocks creates an instance of the class and injects the mocks that are created with the @Mock (or @Spy) annotations into this instance.
+
+Note you must use @RunWith(MockitoJUnitRunner.class) or Mockito.initMocks(this) to initialize these mocks and inject them (JUnit 4).
+
+With JUnit 5, you must use @ExtendWith(MockitoExtension.class).
+
+he Spring MVC Test framework, also known as MockMvc, provides support for testing Spring MVC applications. It performs full Spring MVC request handling but via mock request and response objects instead of a running server.
+
+MockMvc is a Spring Boot test tool class that lets you test controllers without needing to start an HTTP server. In these tests the application context is loaded and you can test the web layer as if i’s receiving the requests from the HTTP server without the hustle of actually starting it.

@@ -1,0 +1,97 @@
+Spring Security is a framework which provides various security features like: authentication, authorization to create secure Java Enterprise Applications.
+
+It is a sub-project of Spring framework 
+
+This framework targets two major areas of application are authentication and authorization. 
+Authentication is the process of knowing and identifying the user that wants to access. Authentication (AuthN) is a process that verifies that someone or something is who they say they are. Technology systems typically use some form of authentication to secure access to an application or its data. For example, when you need to access an online site or service, you usually have to enter your username and password. Then, behind the scenes, it compares the username and password you entered with a record it has on its database. If the information you submitted matches, the system assumes you are a valid user and grants you access
+System authentication in this example presumes that only you would know the correct username and password. authentication protects items of value, and in the information age, it protects systems and data.
+Passwords and security questions 
+One Time Pin (OTP) via SMS or an app, it can verify your identity because it is your device.
+Biometric authentication - fingerprints
+
+ 
+Authorization is the process to allow authority to perform actions in the application.
+Authorization is the security process that determines a user or service's level of access. authorization determines what users can do once the system has granted them access.
+you may have public data that you find on the company's website, internal data that is only accessible to employees, and confidential data that only a handful of individuals can access.
+
+
+Spring Security is a framework that enables a programmer to impose security restrictions to Spring-framework–based Web applications through JEE components. Also, it is a library that can be used, extended to customize as per the programmer’s needs
+so powerful yet customizable
+Spring Security framework supports wide range of authentication models. These models either provided by third parties or framework itself. Spring Security supports integration with all of these technologies.
+HTTP BASIC authentication headers
+HTTP Digest authentication headers
+HTTP X.509 client certificate exchange
+LDAP (Lighweight Directory Access Protocol)
+Form-based authentication
+OpenID authentication
+Automatic remember-me authentication
+Kerberos
+JOSSO (Java Open Source Single Sign-On)
+AppFuse
+AndroMDA
+Mule ESB
+DWR(Direct Web Request)
+
+Advantages :
+Spring Security has numerous advantages. Some of that are given below.
+Comprehensive support for authentication and authorization.
+Protection against common tasks
+Servlet API integration
+Integration with Spring MVC
+Portability
+CSRF protection
+Java Configuration support
+
+
+enable spring security on the spring boot application
+Just add the spring security dependency in the pom.xml
+
+
+
+JSON web token
+JSON Web Token (JWT) is widely used for securing REST APIs, in terms of securely transmitting tokens along with HTTP requests, which facilitates stateless and secure communication between REST clients and API backend.
+This information can be verified and trusted because it is digitally signed.
+
+When should you use JSON Web Tokens?
+Authorization: This is the most common scenario for using JWT. Once the user is logged in, each subsequent request will include the JWT, allowing the user to access routes, services, and resources that are permitted with that token.
+Information Exchange: JSON Web Tokens are a good way of securely transmitting information between parties. Because JWTs can be signed—for example, using public/private key pairs—you can be sure the senders are who they say they are.
+
+JSON Web Token structure?
+In its compact form, JSON Web Tokens consist of three parts separated by dots (.), which are:
+Header
+Payload
+Signature
+Therefore, a JWT typically looks like the following.
+xxxxx.yyyyy.zzzzz
+
+Header
+The header typically consists of two parts: the type of the token, which is JWT, and the signing algorithm being used, such as HMAC SHA256 or RSA
+For example:
+{
+  "alg": "HS256",
+  "typ": "JWT"
+}
+
+Payload
+The second part of the token is the payload, which contains the claims. Claims are statements about an entity (typically, the user) and additional data
+An example payload could be:
+{
+  "sub": "1234567890",
+  "name": "John Doe",
+  "admin": true
+}
+
+Signature
+To create the signature part you have to take the encoded header, the encoded payload, a secret, the algorithm specified in the header, and sign that.
+
+
+The output is three Base64-URL strings separated by dots that can be easily passed in HTML and HTTP environments,	
+
+
+How do JSON Web Tokens work?
+In authentication, when the user successfully logs in using their credentials, a JSON Web Token will be returned. Since tokens are credentials, great care must be taken to prevent security issues. In general, you should not keep tokens longer than required.
+Whenever the user wants to access a protected route or resource, the user agent should send the JWT, typically in the Authorization header using the Bearer schema. The content of the header should look like the following:
+This can be, in certain cases, a stateless authorization mechanism. The server's protected routes will check for a valid JWT in the Authorization header, and if it's present, the user will be allowed to access protected resources. If the JWT contains the necessary data, the need to query the database for certain operations may be reduced, though this may not always be the case.
+
+Bearer authentication (also called token authentication) is an HTTP authentication scheme that involves security tokens called bearer tokens. The name “Bearer authentication” can be understood as “give access to the bearer of this token.” The bearer token is a cryptic string, usually generated by the server in response to a login request. The client must send this token in the Authorization header when making requests to protected resources:
+Authorization: Bearer <token>

@@ -1,0 +1,57 @@
+1. Create spring boot project - 3.1.7
+2. Add dependency for spring web and spring security
+3. Add REST controller for /hello mapping
+4. All requests will be secured by default with username as user and password gets     displayed on console
+
+1. Username and password can be configured in the application.properties file
+   spring.security.user.name=guest	
+   spring.security.user.password=guest
+   spring.security.user.roles=user
+2. Now password will not get displayed on console
+
+
+Differential access for different roles - using in memory users
+1. Create different routes for all users, normal users and admin
+2. Create a class(any name) annotated with @Configuration. Class will provide 
+   methods for 3 bean definitions annotated with @Bean
+   a) SecurityFilterChain bean
+   b) PasswordEncoder bean
+   c) UserDetailsService bean
+3. http.csrf(csrf -> csrf.disable())
+	   .authorizeHttpRequests((authorize) -> {
+        	authorize.requestMatchers("/all").permitAll();
+            authorize.requestMatchers("/user").hasAnyRole("user","admin");
+            authorize.requestMatchers("/admin").hasRole("admin");
+        })
+        .httpBasic(Customizer.withDefaults());
+		return http.build();
+   - mention permissions to different routes as per the roles
+4. Test for all, test for user and test for admin
+
+
+spring security with database
+- Select the table from the database
+- table should have uid, pwd, roles
+- Create entity mapping this table
+- Create repository for above entity and add the method for loading the user
+  from the database.
+- Create a class implementing UserDetailsService and override loadUserByUsername     and get the object from UserRepository
+- Create a class implementing UserDetails. Provide build method (static) for         creating UserDetails object from entity received from repository. Get the roles     converted into List<SimpleGrantedAuthority>
+- Create a class annotated with @Configuration
+  create following beans
+  PasswordEncoder
+  SecurityFilterChain
+  DaoAuthenticationProvider
+  UserDetailsService 
+  and following method
+  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.authenticationProvider(authenticationProvider());
+    }
+
+
+Spring security with jwt
+-
+
+
+
+	
